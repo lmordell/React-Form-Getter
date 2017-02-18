@@ -13,12 +13,14 @@ export default class TestComponent extends Component {
           />
           <input
             type="checkbox"
+            name="checkbox"
             ref={(input) => { this.checkedCheckboxInput = input; }}
             value="checkedCheckboxValue"
             checked
           />
           <input
             type="checkbox"
+            name="checkbox"
             ref={(input) => { this.uncheckedCheckboxInput = input; }}
             value="uncheckedCheckboxValue"
             checked
@@ -26,23 +28,28 @@ export default class TestComponent extends Component {
           <span id="ignore" />
           <input
             type="radio"
+            name="radio"
             ref={(input) => { this.radioChecked = input; }}
             checked
           />
           <input
             type="radio"
+            name="radio"
             ref={(input) => { this.radioUnChecked = input; }}
           />
           <input
             type="submit"
+            name="submit"
             ref={(input) => { this.submitInput = input; }}
           />
           <input
             type="reset"
+            name="reset"
             ref={(input) => { this.resetInput = input; }}
           />
           <input
             type="button"
+            name="button"
             ref={(input) => { this.buttonInput = input; }}
           />
         </form>
