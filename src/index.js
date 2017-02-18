@@ -9,8 +9,8 @@ module.exports = (form) => {
      Form element is not element, throw error
      Form element has no children, return empty object
      User can only pass in a single form
-     For multiple form, the user should call the function multiple times
-     If User forgot to put name property on the form, 
+     For multiple forms, the user should call the function multiple times
+     If User forgot to put name property on the form,
      log a warning with input's form value "Input with the value '~~'
      was not added to the output because the element does
      not have a name property. Please add a name property
@@ -40,7 +40,37 @@ module.exports = (form) => {
             "isMale": true
            }
   */
-   console.log('form children', form.children);
-   return results;
+  // Edge Cases
+  // Ensure that a form element gets pased in
+  // For multiple forms, the user should call the function multiple times
+    // Find a way to ensure that multiple arguments aren't getting passed 
+  // Ensure all valid inputs have a name property or log warning
+
+  const invalidInputTypes = new Set(['button', 'submit', 'reset']);
+
+  const queue = [...form.children];
+
+  while (queue.length) {
+    const currNode = queue.shift();
+    const type = currNode.getAttribute('type');
+    if (currNode.children.length > 0) {
+      queue.push(...currNode.children);
+    }
+    if (currNode.tagName === 'INPUT' && !invalidInputTypes.has(type)) {
+      const name = currNode.getAttribute('name');
+      const value = currNode.value;
+      results[name] = value;
+    }
+  }
+  // HOW TO ACCESS PROPERTIES:
+  // console.log('form children', form.children[0]);
+  // console.log('node', form.children[0]);
+  // console.log('elem tag', form.children[0].tagName);
+  // console.log('name', form.children[0].getAttribute('name'));
+  // console.log('type', form.children[0].getAttribute('type'));
+  // console.log('children', form.children[0].children);
+  // console.log('value', form.children[0].value);
+  console.log('results', results);
+  return results;
 };
 

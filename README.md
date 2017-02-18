@@ -14,7 +14,7 @@ npm install react-form-getter
 ## Usage
 
 ```javascript
-var reGetter = require('react-form-getter');
+const rfGetter = require('react-form-getter');
 ```
 
 ## Other
