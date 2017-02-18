@@ -1,0 +1,86 @@
+{
+  "name": "React-Form-Getter",
+  "version": "0.0.0-semantically-released",
+  "description": "Get all of your React form data in one function",
+  "main": "dist/index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "report-coverage": "cat ./coverage/lcov.info | codecov",
+    "start": "npm run test",
+    "watch:test": "npm t -- --watch",
+    "test": "mocha src/index.test.js --compilers js:babel-register  --require ./src/test_helper.js",
+    "prebuild": "rimraf dist",
+    "build": "npm-run-all --parallel build:*",
+    "build:main": "babel --copy-files --out-dir dist --ignore *.test.js src",
+    "build:umd": "webpack --output-filename index.umd.js",
+    "build:umd.min": "webpack --output-filename index.umd.min.js -p",
+    "setup": "npm install",
+    "setup:fem": "git checkout FEM/10.1-docs && npm install && git checkout FEM/00-scratch",
+    "setup:egghead": "npm run setup && rimraf dist coverage && git checkout lesson/02-setting-up-github",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lmordell/React-Form-Getter.git"
+  },
+  "keywords": [
+    "React",
+    "form"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "author": "Lee Mordell <lee.mordell@gmail.com> (http://www.leemordell.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kentcdodds/React-Form-Getter/issues"
+  },
+  "homepage": "https://github.com/kentcdodds/React-Form-Getter#readme",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "unique-random-array": "1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "6.11.4",
+    "babel-loader": "6.2.4",
+    "babel-preset-es2015": "6.13.2",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-2": "6.13.0",
+    "babel-register": "6.11.6",
+    "chai": "3.5.0",
+    "codecov": "1.0.1",
+    "commitizen": "2.8.5",
+    "cz-conventional-changelog": "1.1.6",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "ghooks": "1.3.2",
+    "jsdom": "^9.11.0",
+    "mocha": "3.0.1",
+    "npm-run-all": "2.3.0",
+    "react-addons-test-utils": "^15.4.2",
+    "rimraf": "2.5.4",
+    "semantic-release": "^4.2.1",
+    "webpack": "1.13.1"
+  },
+  "engines": {
+    "node": "6.x",
+    "npm": "3.x"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "stage-2"
+    ]
+  }
+}
