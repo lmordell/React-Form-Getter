@@ -1,6 +1,6 @@
 {
   "name": "React-Form-Getter",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.0-semantically-released",
   "description": "Get all of your React form data in one function",
   "main": "dist/index.js",
   "scripts": {
@@ -34,13 +34,12 @@
   "author": "Lee Mordell <lee.mordell@gmail.com> (http://www.leemordell.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kentcdodds/React-Form-Getter/issues"
+    "url": "https://github.com/lmordell/React-Form-Getter/issues"
   },
-  "homepage": "https://github.com/kentcdodds/React-Form-Getter#readme",
+  "homepage": "https://github.com/lmordell/React-Form-Getter#readme",
   "dependencies": {
     "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "unique-random-array": "1.0.0"
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "babel-cli": "6.11.4",

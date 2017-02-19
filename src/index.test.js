@@ -10,9 +10,9 @@ import {
   InvalidTypes,
   NonInputs,
   NestedInput,
-  RadioInputs,
-  CheckboxInputs,
+  CheckedInputs,
   Empty,
+  MissingNameProp,
  } from './testComponents';
 import rfGetter from './index';
 
@@ -29,14 +29,14 @@ describe('React-Form-Getter', () => {
   const nestedComponent = renderIntoDocument(
     <NestedInput />,
   );
-  const radioComponent = renderIntoDocument(
-    <RadioInputs />,
-  );
-  const checkboxComponent = renderIntoDocument(
-    <CheckboxInputs />,
+  const checkedComponent = renderIntoDocument(
+    <CheckedInputs />,
   );
   const emptyComponent = renderIntoDocument(
     <Empty />,
+  );
+  const missignNameProp = renderIntoDocument(
+    <MissingNameProp />,
   );
   describe('Functionality', () => {
     it('should be a function', () => {
@@ -71,38 +71,43 @@ describe('React-Form-Getter', () => {
       expect(invalidFormData).to.be.an('object');
       expect(invalidFormData).to.be.empty;
     });
-    it('should only get checked radio values', () => {
-      const radioForm = findRenderedDOMComponentWithTag(radioComponent, 'form');
-      const radioFormData = rfGetter(radioForm);
-      expect(radioFormData).to.deep.equal({
-        checkbox: 'checkedCheckboxValue',
+    it('should handle checked and select types: radio, checkbox, select', () => {
+      const checkedForm = findRenderedDOMComponentWithTag(checkedComponent, 'form');
+      const checkedFormData = rfGetter(checkedForm);
+      expect(checkedFormData).to.deep.equal({
+        radio_checked: 'checkedRadioValue',
+        checkbox_checked: 'checkedCheckboxValue',
+        select: '1',
       });
     });
-    it('should only get checked checkbox values', () => {
-      const checkboxForm = findRenderedDOMComponentWithTag(checkboxComponent, 'form');
-      const checkboxFormData = rfGetter(checkboxForm);
-      expect(checkboxFormData).to.deep.equal({
-        radio: 'checkedRadioValue',
-      });
-    });
+  });
 
-    describe('Edge Cases', () => {
-      it('should take in a single argument', () => {
-        expect(rfGetter('arg1', 'arg2')).to.throw(Error);
-      });
-      it('should reject an argument that is not a form element', () => {
-        const div = findRenderedDOMComponentWithTag(validComponent, 'div');
-        const invalidInput = rfGetter(div);
-        expect(rfGetter(invalidInput)).to.throw(Error);
-      });
-      it('should have children', () => {
-        const emptyForm = findRenderedDOMComponentWithTag(emptyComponent, 'form');
-        const emptyFormData = rfGetter(emptyForm);
-        expect(emptyFormData).to.be.empty;
-      });
-      it('should log a warning when a valid input has no name attr', () => {
-
+  describe('Edge Cases', () => {
+    it('should take in a single argument', () => {
+      expect(rfGetter()).to.throw(Error, 'Form element must be passed as an argument');
     });
+    it('should reject multiple arguments', () => {
+      const validForm = findRenderedDOMComponentWithTag(validComponent, 'form');
+      const validFormData = rfGetter(validForm);
+      expect(rfGetter(validFormData, 'arg2')).to.throw(Error, 'Must pass in a single FORM element as an argument');
+    });
+    it('should reject an argument that is not a form element', () => {
+      const div = findRenderedDOMComponentWithTag(validComponent, 'div');
+      const invalidInput = rfGetter(div);
+      expect(rfGetter(invalidInput)).to.throw(Error, 'Must pass in a FORM element to the function');
+    });
+    it('should return an empty object when no children exist', () => {
+      const emptyForm = findRenderedDOMComponentWithTag(emptyComponent, 'form');
+      const emptyFormData = rfGetter(emptyForm);
+      expect(emptyFormData).to.be.empty;
+    });
+    it('should log a warning when a valid input has no name attr', () => {
+      const missingNameForm = findRenderedDOMComponentWithTag(missignNameProp, 'form');
+      const missingNameFormData = rfGetter(missingNameForm);
+      rfGetter(missingNameFormData);
+      expect( console.log.calledOnce ).to.be.true;
+      expect( console.log.calledWith(`Input with the value: noName and type:
+       text has no name property and could not be added to form data`)).to.be.true;
     });
   });
 });

@@ -1,6 +1,18 @@
 import React from 'react';
 
-module.exports = (form) => {
+module.exports = (form, ...restArgs) => {
+  const args = [...restArgs] || null;
+  if (!form) {
+    throw new Error('Form element must be passed as an argument');
+  }
+  if (args.length > 0) {
+    throw new Error('Must pass in a single FORM element as an argument');
+  }
+  if (form.tagName !== 'FORM') {
+    throw new Error('Must pass in a FORM element to the function');
+  }
+  if (form.children.length < 1) return {};
+
   // Write the react form getter function here
   const results = {};
   /*
@@ -19,7 +31,7 @@ module.exports = (form) => {
     User should pass in a ref to a form element.
     Grab all the form elements children
     Add all valid elements to results object
-    Reject invalid inputs (ie. no value, of type button, rest, etc.)
+    Reject invalid inputs (ie. type button, rest, etc.)
     Invalid inputs:
       -No name attribute
       -Invalid types (button, reset, submit)
@@ -39,14 +51,25 @@ module.exports = (form) => {
             "username": "Lee",
             "isMale": true
            }
+
+           //Should handle select and option as well
   */
   // Edge Cases
   // Ensure that a form element gets pased in
   // For multiple forms, the user should call the function multiple times
-    // Find a way to ensure that multiple arguments aren't getting passed 
+    // Find a way to ensure that multiple arguments aren't getting passed
   // Ensure all valid inputs have a name property or log warning
-
+  const validTags = new Set(['INPUT', 'SELECT']);
   const invalidInputTypes = new Set(['button', 'submit', 'reset']);
+
+  const addNodeToResults = (name, value, type) => {
+    if (name) {
+      results[name] = value;
+    } else {
+      console.warn(`Input with the value: ${value} and type:
+      ${type} has no name property and could not be added to form data`);
+    }
+  };
 
   const queue = [...form.children];
 
@@ -56,10 +79,15 @@ module.exports = (form) => {
     if (currNode.children.length > 0) {
       queue.push(...currNode.children);
     }
-    if (currNode.tagName === 'INPUT' && !invalidInputTypes.has(type)) {
+    if (validTags.has(currNode.tagName) && !invalidInputTypes.has(type)) {
       const name = currNode.getAttribute('name');
       const value = currNode.value;
-      results[name] = value;
+
+      if (type === 'radio' || type === 'checkbox') {
+        if (currNode.checked) addNodeToResults(name, value, type);
+      } else {
+        addNodeToResults(name, value, type);
+      }
     }
   }
   // HOW TO ACCESS PROPERTIES:
@@ -70,7 +98,6 @@ module.exports = (form) => {
   // console.log('type', form.children[0].getAttribute('type'));
   // console.log('children', form.children[0].children);
   // console.log('value', form.children[0].value);
-  console.log('results', results);
   return results;
 };
 
