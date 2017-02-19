@@ -1,5 +1,3 @@
-import React from 'react';
-
 module.exports = (form, ...restArgs) => {
   const args = [...restArgs] || null;
   if (!form) {
@@ -25,8 +23,8 @@ module.exports = (form, ...restArgs) => {
     if (name) {
       results[name] = value;
     } else {
-      console.warn(`Input with the value: ${value} and type:
-      ${type} has no name property and could not be added to form data`);
+      console.warn(`Input with the value: ${value} and type: ${type} 
+      has no name property and could not be added to form data`);
     }
   };
 
