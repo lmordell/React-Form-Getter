@@ -1,5 +1,5 @@
 {
-  "name": "React-Form-Getter",
+  "name": "react-form-getter",
   "version": "1.0.0-semantically-released",
   "description": "Get all of your React form data in one function",
   "main": "dist/index.js",
