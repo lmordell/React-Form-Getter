@@ -37,7 +37,8 @@ class Login extends Component {
 	render() {
 	  return (
 		<form 
-		  ref={(form) => { this.form = form; }} onSubmit={this.handleSubmit}>
+		  ref={(form) => { this.form = form; }} 
+		  onSubmit={this.handleSubmit}>
 		 <input
             type="text"
             name="textInput"
@@ -62,9 +63,11 @@ This utility was developed by [Lee Mordell](https://www.leemordell.com)
 
 ### Project Setup
 
-First install the dependencies, then run the tests.
+Clone the repo, install the dependencies, then run the tests.
 
-  `$ npm install`
-  `$ npm test`
+* `$ git clone https://github.com/lmordell/React-Form-Getter.git`
+* `$ cd React-Form-Getter`
+* `$ npm install`
+* `$ npm test`
  
 
