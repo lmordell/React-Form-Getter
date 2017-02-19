@@ -11,10 +11,8 @@ module.exports = (form, ...restArgs) => {
   }
   if (form.children.length < 1) return {};
 
-  // Write the react form getter function here
+  /* Start function */
   const results = {};
-
-    // User should pass in a ref to a form element.
 
   const validTags = new Set(['INPUT', 'SELECT']);
   const invalidInputTypes = new Set(['button', 'submit', 'reset']);
