@@ -65,7 +65,7 @@ This utility was developed by [Lee Mordell](https://www.leemordell.com)
 
 First install the dependencies, then run the tests.
 
-`$ npm install`
-`$ npm test`
+  `$ npm install`
+  `$ npm test`
  
 

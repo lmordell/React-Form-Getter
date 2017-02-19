@@ -17,7 +17,9 @@
     "setup": "npm install",
     "setup:fem": "git checkout FEM/10.1-docs && npm install && git checkout FEM/00-scratch",
     "setup:egghead": "npm run setup && rimraf dist coverage && git checkout lesson/02-setting-up-github",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "release": "semantic-release pre && npm publish && semantic-release post",
+    "validate": "npm-run-all --parallel build"
   },
   "repository": {
     "type": "git",
