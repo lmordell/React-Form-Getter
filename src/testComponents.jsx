@@ -78,6 +78,14 @@ export class NestedInput extends Component {
               ref={(input) => { this.submitInput = input; }}
               value="nestedValue"
             />
+            <div>
+              <input
+                type="text"
+                name="second_nested"
+                ref={(input) => { this.submitInput = input; }}
+                value="secondNestedValue"
+              />
+            </div>
           </div>
         </form>
       </div>

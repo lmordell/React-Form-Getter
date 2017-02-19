@@ -57,6 +57,7 @@ describe('React-Form-Getter', () => {
       const nestedFormData = rfGetter(nestedForm);
       expect(nestedFormData).to.deep.equal({
         nested: 'nestedValue',
+        second_nested: 'secondNestedValue',
       });
     });
     it('should ignore non input elements', () => {
