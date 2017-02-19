@@ -3,13 +3,13 @@ import React from 'react';
 module.exports = (form, ...restArgs) => {
   const args = [...restArgs] || null;
   if (!form) {
-    throw new Error('Form element must be passed as an argument');
+    throw new Error('rfGetter - Form element must be passed as an argument');
   }
   if (args.length > 0) {
-    throw new Error('Must pass in a single FORM element as an argument');
+    throw new Error('rfGetter - Must pass in a single FORM element as an argument');
   }
   if (form.tagName !== 'FORM') {
-    throw new Error('Must pass in a FORM element to the function');
+    throw new Error('rfGetter - Must pass in a FORM element to the function');
   }
   if (form.children.length < 1) return {};
 

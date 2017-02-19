@@ -112,4 +112,3 @@ describe('React-Form-Getter', () => {
     });
   });
 });
-
