@@ -14,12 +14,11 @@ npm install react-form-getter
 ## Usage
 
 Add a ref to the form element and pass it as an argument to the rfGetter function. This will return all nested inputs in a results object 
-<name, inputValue>. Each input should have a name attribute in order to be
+`<name, inputValue>`. Each input should have a name attribute in order to be
 added to the results object.
 
 
 ```javascript
-//ES5
 const rfGetter = require('react-form-getter');
 
 class Login extends Component {
