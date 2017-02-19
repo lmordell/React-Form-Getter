@@ -1,6 +1,6 @@
 {
   "name": "react-form-getter",
-  "version": "1.0.0-semantically-released",
+  "version": "1.0.0",
   "description": "Get all of your React form data in one function",
   "main": "dist/index.js",
   "scripts": {
@@ -39,8 +39,7 @@
     "url": "https://github.com/lmordell/React-Form-Getter/issues"
   },
   "homepage": "https://github.com/lmordell/React-Form-Getter#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-cli": "6.11.4",
     "react": "^15.4.2",
