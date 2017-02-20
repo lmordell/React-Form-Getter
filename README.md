@@ -19,7 +19,7 @@ added to the results object.
 
 
 ```javascript
-const rfGetter = require('react-form-getter');
+import rfGetter from 'react-form-getter';
 
 class Login extends Component {
 
